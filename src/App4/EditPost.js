@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams, Link, useHistory} from 'react-router-dom'
+import { useParams, Link, useNavigate} from 'react-router-dom'
 import { useEffect } from 'react';
 import { format } from 'date-fns'
 // import { useState, useEffect, useContext} from 'react';
@@ -9,7 +9,7 @@ import { useStoreState, useStoreActions } from 'easy-peasy';
 
 const EditPost = () => {
     const {id} = useParams();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const editTitle = useStoreState((state) => state.editTitle);
     const editBody = useStoreState((state) => state.editBody);
@@ -37,7 +37,7 @@ const EditPost = () => {
         const datetime = format(new Date(), 'MMMM dd, yyyy pp');
         const updatedPost = {id, title: editTitle, datetime, body: editBody};
         editPost(updatedPost);
-        history.push(`/post/${id}`);
+        navigate(`/post/${id}`);
         // try {
         //     const response = await api.put(`/posts/${id}`, updatedPost);
         //     setPosts(posts.map(post => post.id === id ? {...response.data} : post));

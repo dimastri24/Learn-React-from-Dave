@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import App4Main from './App4Main';
 import { StoreProvider } from 'easy-peasy';
 import store from './store';
@@ -10,7 +10,9 @@ function App4() {
   return (
     <StoreProvider store={store}>
       <Router>
-          <Route path="/" component={App4Main}/>
+        <Routes>
+          <Route path="/*" element={<App4Main/>}/>
+        </Routes>
       </Router>
     </StoreProvider>
   )

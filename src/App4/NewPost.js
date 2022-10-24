@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { format } from 'date-fns'
 // import { useState, useContext } from 'react'
 // import api from '../api/posts'
@@ -11,7 +11,7 @@ const NewPost = () => {
   // const [postTitle, setPostTitle] = useState('');
   // const [postBody, setPostBody] = useState('');
   
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const posts = useStoreState((state) => state.posts);
   const postTitle = useStoreState((state) => state.postTitle);
@@ -27,7 +27,7 @@ const NewPost = () => {
     const datetime = format(new Date(), 'MMMM dd, yyyy pp');
     const newPost = {id, title: postTitle, datetime, body: postBody};
     savePost(newPost);
-    history.push('/');
+    navigate('/');
     // try {
     //   const response = await api.post('/posts', newPost);
     //   const allPost = [...posts, response.data];

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams, Link, useHistory } from 'react-router-dom'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 // import { useContext } from 'react'
 // import api from '../api/posts'
 // import DataContext from '../context/DataContext'
@@ -7,7 +7,7 @@ import { useStoreState, useStoreActions } from 'easy-peasy';
 
 const PostPage = () => {
   const {id} = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   // const {posts, setPosts} = useContext(DataContext);
   // const post = posts.find(post => (post.id).toString() === id);
@@ -18,7 +18,7 @@ const PostPage = () => {
 
   const handleDelete = (id) => {
     deletePost(id);
-    history.push('/');
+    navigate('/');
     // try{
     //   await api.delete(`/posts/${id}`);
     //   const postsList = posts.filter(post => post.id !== id);

@@ -11,6 +11,9 @@ npm i date-fns
 npm i react-icons
 npm i easy-peasy
 
+update depedency
+npm i react-router-dom@6.0.2
+
 // not needed
 App.test.js
 reportWebVitals.js

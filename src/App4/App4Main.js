@@ -1,14 +1,15 @@
 import React from 'react'
-import Header from './Header'
-import Nav from './Nav'
-import Footer from './Footer'
+// import Header from './Header'
+// import Nav from './Nav'
+// import Footer from './Footer'
+import Layout from './Layout'
 import Home from './Home'
 import NewPost from './NewPost'
 import PostPage from './PostPage'
 import EditPost from './EditPost'
 import About from './About'
 import Missing from './Missing'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 // import { DataProvider } from '../context/DataContext'
 import { useEffect } from "react";
 import useAxiosFetch from '../hooks/useAxiosFetch'
@@ -24,24 +25,27 @@ function App4Main() {
 
   return (
     <div className="App">
-      <Header title="React JS Blog"/>
+      {/* <Header title="React JS Blog"/> */}
         {/* <DataProvider> */}
-        <Nav/>
-        <Switch>
-          <Route exact path="/">
-            <Home 
+        {/* <Nav/> */}
+      <Routes>
+        <Route path="/" element={<Layout/>}>
+          <Route index element={<Home 
               isLoading={isLoading} 
               fetchError={fetchError} 
-            />
+            />}>
           </Route>
-          <Route exact path="/post" component={NewPost}/>
-          <Route path="/edit/:id" component={EditPost}/>
-          <Route path="/post/:id" component={PostPage}/>
-          <Route path="/about" component={About}/>
-          <Route path="*" component={Missing}/>
-        </Switch>
+          <Route path="post">
+            <Route index element={<NewPost/>}/>
+            <Route path=":id" element={<PostPage/>}/>
+          </Route>
+          <Route path="edit/:id" element={<EditPost/>}/>
+          <Route path="about" element={<About/>}/>
+          <Route path="*" element={<Missing/>}/>
+        </Route>
+      </Routes>
         {/* </DataProvider> */}
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   )
 }
